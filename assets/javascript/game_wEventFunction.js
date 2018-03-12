@@ -89,7 +89,22 @@ function fighting() {
   }
 };
 
+function settingPlayer(name) {
+  console.log("-->Inside settingPlayer function ");
+  playerSelection = true;
+  console.log("Player Selection--> " + playerSelection);
+  console.log("Defender Selection--> " + defenderSelection);
 
+  attacker.attackerName = "luke";
+  // console.log("Selected Character--> "+attacker.attackerName);
+  console.log("Selected Character--> "+name);
+  playerSelected = $("." + attacker.attackerName + "-card")
+  attacker.attackerPower = player + "." + attacker.attackerName + "Power";
+  attacker.powerSpan = attacker.attackerName + "-power";
+  attacker.currentPower = attacker.attackerPower;
+  $("#character-panel").append(playerSelected);
+
+}
 
 // Player Buttons  - Event Detection
 
@@ -98,19 +113,10 @@ $("#luke-button").on("click", function () {
     console.log("#### Selecting Character");
     console.log("Player Selection--> " + playerSelection);
     console.log("Defender Selection--> " + defenderSelection);
-    playerSelection = true;
-    attacker.attackerPower = player.lukePower;
-    attacker.currentPower = attacker.attackerPower;
-    attacker.attackerName = "luke";
-    attacker.powerSpan = "luke-power";
-    console.log("Selected Luke as Character. Power= " + attacker.attackerPower);
-    console.log("Player Selection--> " + playerSelection);
-    console.log("Defender Selection--> " + defenderSelection);
-    playerSelected = $(".luke-card");
-    $("#character-panel").append(playerSelected);
     $("#enemies-panel").append($("#yoda"));
     $("#enemies-panel").append($("#chewbacca"));
     $("#enemies-panel").append($("#stormtrooper"));
+    settingPlayer(luke);
   }
   else if (playerSelection && !defenderSelection) {
     defenderSelection = true;
@@ -145,7 +151,7 @@ $("#yoda-button").on("click", function () {
     $("#enemies-panel").append($("#chewbacca"));
     $("#enemies-panel").append($("#stormtrooper"));
   }
-  else if (playerSelection && !defenderSelection ) {
+  else if (playerSelection && !defenderSelection) {
     defenderSelection = true;
     defenderSelected = $(".yoda-card");
     defender.defenderPower = player.yodaPower;
@@ -193,22 +199,49 @@ $("#chewbacca-button").on("click", function () {
   }
 })
 
+// STORMTROOPER SELECTION
+// $("#stormtrooper-button").on("click", function () {
+//   if (!playerSelection && !defenderSelection) {
+//     console.log("#### Selecting Character");
+//     console.log("Player Selection--> " + playerSelection);
+//     console.log("Defender Selection--> " + defenderSelection);
+//     console.log("Selected Stormtrooper as Character");
+//     playerSelection = true;
+//     playerSelected = $(".stormtrooper-card");
+//     attacker.attackerPower = player.stormtrooperPower;
+//     attacker.currentPower = attacker.attackerPower;
+//     attacker.attackerName = "stormtrooper";
+//     attacker.powerSpan = "stormtrooper-power";
+//     $("#character-panel").append(playerSelected);
+//     $("#enemies-panel").append($("#luke"));
+//     $("#enemies-panel").append($("#chewbacca"));
+//     $("#enemies-panel").append($("#yoda"));
+//   }
+//   else if (playerSelection && !defenderSelection) {
+//     defenderSelection = true;
+//     defenderSelected = $(".stormtrooper-card");
+//     $("#defender-panel").append(defenderSelected);
+//     defender.defenderPower = player.stormtrooperPower;
+//     defender.currentPower = defender.defenderPower;
+//     defender.defenderName = "stormtrooper";
+//     defender.powerSpan = "stormtrooper-power";
+//     console.log("### Selecting Defender");
+//     console.log("Player Selection--> " + playerSelection);
+//     console.log("Defender Selection--> " + defenderSelection);
+//     console.log("**** Selected stormtrooper as Defender");
+//   }
+// })
+
 $("#stormtrooper-button").on("click", function () {
   if (!playerSelection && !defenderSelection) {
     console.log("#### Selecting Character");
     console.log("Player Selection--> " + playerSelection);
     console.log("Defender Selection--> " + defenderSelection);
     console.log("Selected Stormtrooper as Character");
-    playerSelection = true;
-    playerSelected = $(".stormtrooper-card");
-    attacker.attackerPower = player.stormtrooperPower;
-    attacker.currentPower = attacker.attackerPower;
-    attacker.attackerName = "stormtrooper";
-    attacker.powerSpan = "stormtrooper-power";
-    $("#character-panel").append(playerSelected);
     $("#enemies-panel").append($("#luke"));
     $("#enemies-panel").append($("#chewbacca"));
     $("#enemies-panel").append($("#yoda"));
+    settingPlayer(stormtrooper);
   }
   else if (playerSelection && !defenderSelection) {
     defenderSelection = true;
@@ -223,17 +256,12 @@ $("#stormtrooper-button").on("click", function () {
     console.log("Defender Selection--> " + defenderSelection);
     console.log("**** Selected stormtrooper as Defender");
   }
-})
-
-
-
-
-
+});
 
 
 $(".attack-button").on("click", function () {
   if ((!attacker.attackerWin && !defender.defenderWin && defenderSelection)
-  ||(attacker.attackerWin && !defender.defenderWin && defenderSelection)){
+    || (attacker.attackerWin && !defender.defenderWin && defenderSelection)) {
     console.log("Attacker WIN --> " + attacker.attackerWin);
     console.log("Defender WIN --> " + defender.defenderWin);
     // var currentAttackerPower = attacker.attackerPower;
