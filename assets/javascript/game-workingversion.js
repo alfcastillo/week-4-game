@@ -110,10 +110,9 @@ $("#luke-button").on("click", function () {
     console.log("Defender Selection--> " + defenderSelection);
     playerSelected = $(".luke-card");
     $("#character-panel").append(playerSelected);
-    $("#select-panel").html("<h1 class="+"text-center"+"><strong>Select your Enemy to Attack</strong></h1>");
-    // $("#enemies-panel").append($("#yoda"));
-    // $("#enemies-panel").append($("#chewbacca"));
-    // $("#enemies-panel").append($("#stormtrooper"));
+    $("#enemies-panel").append($("#yoda"));
+    $("#enemies-panel").append($("#chewbacca"));
+    $("#enemies-panel").append($("#stormtrooper"));
   }
   else if (playerSelection && !defenderSelection) {
     defenderSelection = true;

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Start Wars</title>
+
+  <!-- Bootstrap File -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
+    crossorigin="anonymous">
+
+  <!-- JQuery -->
+  <script src="https://code.jquery.com/jquery.js"></script>
+
+</head>
+
+<body>
+
+  <!-- Overall Bootstrap Grid -->
+  <div class="container">
+
+    <!-- Jumbotron with Title -->
+    <div class="jumbotron">
+      <h1 class="text-center">
+        <strong>Start Wars: The Game!</strong>
+      </h1>
+      <h4 class="text-center">Rated M for Mature</h4>
+      <hr>
+      <div class="text-center">
+        <button class="btn btn-warning btn-xs theme-button">
+          <span class="glyphicon glyphicon-music"></span> Play Theme!</button>
+        <button class="btn btn-default btn-xs pause-button">
+          <span class="glyphicon glyphicon-pause"></span> Pause Song</button>
+      </div>
+
+    </div>
+
+    <div class="jumbotron">
+      <h1 class="text-center">
+        <strong>Characters</strong>
+      </h1>
+    </div>
+
+    <!-- Players Panel -->
+    <div class="players-panel">
+      <div class="row justify-content-between">
+
+        <!-- LUKE -->
+        <div id="luke">
+          <div class="card luke-card">
+            <div class="card-body">
+              <p class="card-text">
+                <h2>Luke Skywalker</h2>
+              </p>
+            </div>
+            <button id="luke-button" class="btn btn-primary number" value="100">
+              <h1>
+                <img class="card-img-top" src="./assets/images/Jonathan-Rey-Star-Wars-Characters-Luke-Skywalker-03.ico" alt="Luke Skywalker">
+              </h1>
+            </button>
+            <div class="card-body">
+              <span id="luke-power">
+                <strong>145</strong>
+              </span>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- YODA -->
+        <div id="yoda">
+          <div class="card yoda-card">
+            <div class="card-body">
+              <p class="card-text">
+                <h2>Yoda</h2>
+              </p>
+            </div>
+            <button id="yoda-button" class="btn btn-primary number" value="100">
+              <h1>
+                <img class="card-img-top" src="./assets/images/Jonathan-Rey-Star-Wars-Characters-Yoda-02.ico" alt="Yoda">
+              </h1>
+            </button>
+            <div class="card-body">
+              <span id="yoda-power">
+                <strong>165</strong>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Chewbacca -->
+        <div id="chewbacca">
+        <div class="card chewbacca-card">
+          <div class="card-body">
+            <p class="card-text">
+              <h2>Chewbacca</h2>
+            </p>
+          </div>
+          <button id="chewbacca-button" class="btn btn-primary number" value="105">
+            <h1>
+              <img class="card-img-top" src="./assets/images/Jonathan-Rey-Star-Wars-Characters-Chewbacca.ico" alt="Chewbacca">
+            </h1>
+          </button>
+          <div class="card-body">
+            <span id="chewbacca-power">
+              <strong>105</strong>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stormtrooper -->
+      <div id="stormtrooper">
+      <div class="card stormtrooper-card">
+        <div class="card-body">
+          <p class="card-text">
+            <h2>Stormtrooper</h2>
+          </p>
+        </div>
+        <button id="stormtrooper-button" class="btn btn-primary number" value="100">
+          <h1>
+            <img class="card-img-top" src="./assets/images/Jonathan-Rey-Star-Wars-Characters-Stormtrooper-02.ico" alt="Yoda">
+          </h1>
+        </button>
+        <div class="card-body">
+          <span id="stormtrooper-power">
+            <strong>105</strong>
+          </span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  </div>
+
+
+
+  <div class="row justify-content-between ">
+
+     <!-- Enemies Available to Attack Panel -->
+     <div class="jumbotron">
+      <h1 class="text-center">
+        <strong>Enemies Available to Attack</strong>
+      </h1>
+    </div>
+
+    <div id="enemies-panel"> </div>
+    <!-- Character Selected -->
+    <div class="jumbotron">
+      <h1 class="text-center">
+        <strong>Your Character</strong>
+      </h1>
+    </div>
+    <div id="character-panel"> </div>   
+
+    <!-- Fight Section -->
+    <div class="jumbotron">
+      <div class="text-center">
+        <button class="btn attack-button btn-default btn-lg unstretch-btn">
+          <span class="glyphicon glyphicon-resize-small"></span>Attack</button>
+      </div>
+    </div>
+
+    <!-- Defender -->
+    <div class="jumbotron">
+      <h1 class="text-center">
+        <strong>Defender</strong>
+      </h1>
+    </div>
+    <div id="defender-panel"> </div>
+
+  </div>
+
+
+
+  <script type="text/javascript" src="./assets/javascript/game.js"></script>
+
+</body>
+
+</html>
