@@ -25,9 +25,11 @@ $(document).ready(function () {
   $(".pause-button").on("click", function () {
     audioElement.pause();
   });
+  
+  $(".restart-button").hide();
 
-  // Character Object
-  // Variables
+  
+  // Variables & Objects
   var playerPanel;
   var winCount=0;
   var playerSelection = false;
@@ -60,7 +62,7 @@ $(document).ready(function () {
   // FUNCTIONS
   function resetEnemies() {
     console.log("***** RESETING Enemies for new Game");
-    $("#defender-panel").empty(defenderSelected);
+    $("#defender-panel").empty();
     playerSelection = true;
     defenderSelection = false;
     // attacker.attackerWin = false;
@@ -71,12 +73,62 @@ $(document).ready(function () {
     console.log("Defender Win--> " + defender.defenderWin);
   }
 
+  function restartGame(){
+    console.log("Inside Restart Function");
+    playerSelection = false;
+    defenderSelection = false;
+    attacker.attackerWin = false;
+    attacker.attackerPower = 0;
+    attacker.currentPower=0;
+    attackerName= " ";
+    attacker.powerSpan = " ";
+    defender.defenderWin = false;
+    defender.defenderPower = 0;
+    defender.currentPower = 0;
+    defender.defenderName = " ";
+    defender.powerSpan = " ";
+    player.lukePower=145;
+    player.yodaPower= 165;
+    player.chewbaccaPower= 105;
+    player.stormtrooperPower= 105;
+    audioElement.pause();
+    starwarSongElement.pause();
+    imperialSongElement.pause();
+    
+
+    // Placing Players in Player Panel
+    $("#luke").append($(".luke-card"));
+    $("#yoda").append($(".yoda-card"));
+    $("#chewbacca").append($(".chewbacca-card"));
+    $("#stormtrooper").append($(".stormtrooper-card"));
+
+    // $(".player-panel").append($(".luke-card"));
+    // $(".player-panel").append($(".yoda-card"));
+    // $(".player-panel").append($(".chewbacca-card"));
+    // $("#reset-area").append($(".stormtrooper-card"));
+   
+    // Reset panels 
+    $("#character-panel").empty();
+    $("#defender-panel").empty();
+    $("#select-panel").html("<h1 class="+'text-center'+"> <strong>Select your Character</strong></h1>");
+    $("#status-panel").empty();
+
+    
+    console.log("Done with Restarting Game");
+  }
+
+  $(".restart-button").on("click", function () {
+    console.log("Restart Button Pressed");
+    restartGame();
+    $(".restart-button").hide();
+ });
+
   function fighting() {
     console.log("Running fighting function");
     attacker.attackerPower = attacker.attackerPower - (defender.defenderPower / attackFactor);
     defender.defenderPower = defender.defenderPower - (attacker.attackerPower / attackFactor);
-    $("#" + attacker.powerSpan).html(attacker.attackerPower);
-    $("#" + defender.powerSpan).html(defender.defenderPower);
+    $("#" + attacker.powerSpan).html("<font color="+"white"+">"+attacker.attackerPower+"</font>");
+    $("#" + defender.powerSpan).html("<font color="+"white"+">"+defender.defenderPower+"</font>");
     console.log("#" + attacker.powerSpan);
     console.log("Attacker Power Left--> " + attacker.attackerPower);
     console.log("Defender Power Left--> " + defender.defenderPower);
@@ -88,6 +140,7 @@ $(document).ready(function () {
       $("#status-panel").html("<h1 class="+'text-center'+"> <strong>You Lost the combat. <br> Press Restart if you want to play again</strong></h1>");
       audioElement.pause();
       imperialSongElement.play();   
+      $(".restart-button").show();
     }
     else if ((attacker.attackerPower >= 0) && (defender.defenderPower <= 0)) {
       attacker.attackerWin = true;
