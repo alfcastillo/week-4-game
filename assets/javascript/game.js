@@ -40,7 +40,7 @@ $(document).ready(function () {
     lukePower: 145,
     yodaPower: 165,
     chewbaccaPower: 105,
-    stormtrooperPower: 105,
+    stormtrooperPower: 104,
   };
   var attacker = {
     attackerPower: 0,
@@ -57,7 +57,8 @@ $(document).ready(function () {
     defenderName: " ",
     powerSpan: " "
   }
-  var attackFactor = 3; //Factor used to calculate the Attack level
+  var attackFactor = Math.floor((Math.random() * 5) + 1); //Factor used to calculate the Attack level
+  var defendFactor = Math.floor((Math.random() * 5) + 1); //Factor used to calculate the Attack level
 
   // FUNCTIONS
   function resetEnemies() {
@@ -90,7 +91,7 @@ $(document).ready(function () {
     player.lukePower=145;
     player.yodaPower= 165;
     player.chewbaccaPower= 105;
-    player.stormtrooperPower= 105;
+    player.stormtrooperPower= 104;
     audioElement.pause();
     starwarSongElement.pause();
     imperialSongElement.pause();
@@ -102,10 +103,13 @@ $(document).ready(function () {
     $("#chewbacca").append($(".chewbacca-card"));
     $("#stormtrooper").append($(".stormtrooper-card"));
 
-    // $(".player-panel").append($(".luke-card"));
-    // $(".player-panel").append($(".yoda-card"));
-    // $(".player-panel").append($(".chewbacca-card"));
-    // $("#reset-area").append($(".stormtrooper-card"));
+    // Reset Power Values.
+    console.log("Resetting Power values")
+    $("#luke-power").html("<font color="+"white"+">145</font>");
+    $("#yoda-power").html("<font color="+"white"+">165</font>");
+    $("#chewbacca-power").html("<font color="+"white"+">105</font>");
+    $("#stormtrooper-power").html("<font color="+"white"+">105</font>");
+
    
     // Reset panels 
     $("#character-panel").empty();
@@ -125,8 +129,9 @@ $(document).ready(function () {
 
   function fighting() {
     console.log("Running fighting function");
+    var temp = attacker.attackerPower;
     attacker.attackerPower = attacker.attackerPower - (defender.defenderPower / attackFactor);
-    defender.defenderPower = defender.defenderPower - (attacker.attackerPower / attackFactor);
+    defender.defenderPower = defender.defenderPower - (temp / defendFactor);
     $("#" + attacker.powerSpan).html("<font color="+"white"+">"+attacker.attackerPower+"</font>");
     $("#" + defender.powerSpan).html("<font color="+"white"+">"+defender.defenderPower+"</font>");
     console.log("#" + attacker.powerSpan);
@@ -192,23 +197,19 @@ $(document).ready(function () {
       defenderSelected = $(".luke-card");
       defender.defenderPower = player.lukePower;
       defender.currentPower = defender.defenderPower;
-      defender.defenderrName = "luke";
+      defender.defenderName = "luke";
       defender.powerSpan = "luke-power";
       $("#defender-panel").append(defenderSelected);
       console.log("### Selecting Defender");
       console.log("Player Selection--> " + playerSelection);
       console.log("Defender Selection--> " + defenderSelection);
-      console.log("Selected Luke as Character. Power= " + defender.defenderPower);
+      console.log("Selected Luke as Defender. Power= " + defender.defenderPower);
 
     }
   });
 
   $("#yoda-button").on("click", function () {
     if (!playerSelection && !defenderSelection) {
-      console.log("#### Selecting Character");
-      console.log("Player Selection--> " + playerSelection);
-      console.log("Defender Selection--> " + defenderSelection);
-      console.log("Selected Yoda as Character");
       playerSelection = true;
       playerSelected = $(".yoda-card");
       attacker.attackerPower = player.yodaPower;
@@ -216,6 +217,10 @@ $(document).ready(function () {
       attacker.attackerName = "yoda";
       attacker.powerSpan = "yoda-power";
       $("#character-panel").append(playerSelected);
+      console.log("#### Selecting Character");
+      console.log("Player Selection--> " + playerSelection);
+      console.log("Defender Selection--> " + defenderSelection);
+      console.log("Selected Yoda as CharacterPower= " + attacker.attackerPower);
     }
     else if (playerSelection && !defenderSelection) {
       defenderSelection = true;
@@ -235,10 +240,6 @@ $(document).ready(function () {
 
   $("#chewbacca-button").on("click", function () {
     if (!playerSelection && !defenderSelection) {
-      console.log("#### Selecting Character");
-      console.log("Player Selection--> " + playerSelection);
-      console.log("Defender Selection--> " + defenderSelection);
-      console.log("Selected Chewbacca as Character");
       playerSelection = true;
       playerSelected = $(".chewbacca-card");
       attacker.attackerPower = player.chewbaccaPower;
@@ -246,6 +247,10 @@ $(document).ready(function () {
       attacker.attackerName = "chewbacca";
       attacker.powerSpan = "chewbacca-power";
       $("#character-panel").append(playerSelected);
+      console.log("#### Selecting Character");
+      console.log("Player Selection--> " + playerSelection);
+      console.log("Defender Selection--> " + defenderSelection);
+      console.log("Selected Chewbacca as Character" + attacker.attackerPower);
     }
     else if (playerSelection && !defenderSelection) {
       defenderSelection = true;
@@ -264,10 +269,6 @@ $(document).ready(function () {
 
   $("#stormtrooper-button").on("click", function () {
     if (!playerSelection && !defenderSelection) {
-      console.log("#### Selecting Character");
-      console.log("Player Selection--> " + playerSelection);
-      console.log("Defender Selection--> " + defenderSelection);
-      console.log("Selected Stormtrooper as Character");
       playerSelection = true;
       playerSelected = $(".stormtrooper-card");
       attacker.attackerPower = player.stormtrooperPower;
@@ -275,6 +276,10 @@ $(document).ready(function () {
       attacker.attackerName = "stormtrooper";
       attacker.powerSpan = "stormtrooper-power";
       $("#character-panel").append(playerSelected);
+      console.log("#### Selecting Character");
+      console.log("Player Selection--> " + playerSelection);
+      console.log("Defender Selection--> " + defenderSelection);
+      console.log("Selected Stormtrooper as Character"+ attacker.attackerPower);
     }
     else if (playerSelection && !defenderSelection) {
       defenderSelection = true;
