@@ -60,9 +60,6 @@ $(document).ready(function () {
   // FUNCTIONS
   function resetEnemies() {
     console.log("***** RESETING Enemies for new Game");
-    // $("#enemies-panel").append(defenderSelected);
-    // $("#" + defender.powerSpan).html(defender.currentPower);
-
     $("#defender-panel").empty(defenderSelected);
     playerSelection = true;
     defenderSelection = false;
@@ -89,7 +86,8 @@ $(document).ready(function () {
       defender.defenderWin = true;
       console.log(attacker.attackerName + "--> LOSER");
       $("#status-panel").html("<h1 class="+'text-center'+"> <strong>You Lost the combat. <br> Press Restart if you want to play again</strong></h1>");
-      imperialSongElement.play();    
+      audioElement.pause();
+      imperialSongElement.play();   
     }
     else if ((attacker.attackerPower >= 0) && (defender.defenderPower <= 0)) {
       attacker.attackerWin = true;
@@ -105,12 +103,12 @@ $(document).ready(function () {
       $("#" + attacker.powerSpan).html(attacker.attackerPower);
       if (winCount==3){
       $("#status-panel").html("<h1 class="+'text-center'+"> <strong>You defeted all your oponents <br> You WON!!!!</strong></h1>");
+      audioElement.pause();
       starwarSongElement.play();
       }
       else{
       $("#status-panel").html("<h1 class="+'text-center'+"> <strong>You defeted your opponent. <br> Select another one</strong></h1>");
       }
-      // $("#status-panel").empty();
       resetEnemies();
     }
   };
@@ -135,9 +133,6 @@ $(document).ready(function () {
       playerSelected = $(".luke-card");
       $("#character-panel").append(playerSelected);
       $("#select-panel").html("<h1 class=" + "text-center" + "><strong>Select your Enemy to Attack</strong></h1>");
-      // $("#enemies-panel").append($("#yoda"));
-      // $("#enemies-panel").append($("#chewbacca"));
-      // $("#enemies-panel").append($("#stormtrooper"));
     }
     else if (playerSelection && !defenderSelection) {
       defenderSelection = true;
@@ -168,9 +163,6 @@ $(document).ready(function () {
       attacker.attackerName = "yoda";
       attacker.powerSpan = "yoda-power";
       $("#character-panel").append(playerSelected);
-      // $("#enemies-panel").append($("#luke"));
-      // $("#enemies-panel").append($("#chewbacca"));
-      // $("#enemies-panel").append($("#stormtrooper"));
     }
     else if (playerSelection && !defenderSelection) {
       defenderSelection = true;
@@ -201,9 +193,6 @@ $(document).ready(function () {
       attacker.attackerName = "chewbacca";
       attacker.powerSpan = "chewbacca-power";
       $("#character-panel").append(playerSelected);
-      // $("#enemies-panel").append($("#luke"));
-      // $("#enemies-panel").append($("#yoda"));
-      // $("#enemies-panel").append($("#stormtrooper"));
     }
     else if (playerSelection && !defenderSelection) {
       defenderSelection = true;
@@ -233,9 +222,6 @@ $(document).ready(function () {
       attacker.attackerName = "stormtrooper";
       attacker.powerSpan = "stormtrooper-power";
       $("#character-panel").append(playerSelected);
-      // $("#enemies-panel").append($("#luke"));
-      // $("#enemies-panel").append($("#chewbacca"));
-      // $("#enemies-panel").append($("#yoda"));
     }
     else if (playerSelection && !defenderSelection) {
       defenderSelection = true;
@@ -252,19 +238,13 @@ $(document).ready(function () {
     }
   })
 
-
-
-
-
-
-
+  // Attack Buttons  - Detection
   $(".attack-button").on("click", function () {
     if ((!attacker.attackerWin && !defender.defenderWin && defenderSelection)
       || (attacker.attackerWin && !defender.defenderWin && defenderSelection)) {
+        $("#status-panel").html("<h1 class="+'text-center'+"> <strong>Keep Attacking!!!</h1>");
       console.log("Attacker WIN --> " + attacker.attackerWin);
       console.log("Defender WIN --> " + defender.defenderWin);
-      // var currentAttackerPower = attacker.attackerPower;
-      // var currentDefenderPower = defender.defenderPower;
       console.log("Attack button pressed");
       console.log("Player Selected --> " + attacker.attackerName);
       console.log("Defender Selected --> " + defender.defenderName);
