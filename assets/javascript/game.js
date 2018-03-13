@@ -4,7 +4,13 @@ $(document).ready(function () {
 
   // Gets Link for Theme Song
   var audioElement = document.createElement('audio');
-  audioElement.setAttribute('src', './assets/starwarsthemesong.mp3');
+  audioElement.setAttribute('src', "./assets/star-wars-cantina-song.mp3");
+
+  var starwarSongElement = document.createElement('audio');
+  starwarSongElement.setAttribute('src', './assets/starwarsthemesong.mp3');
+
+  var imperialSongElement = document.createElement('audio');
+  imperialSongElement.setAttribute('src', './assets/imperial_march.mp3');
 
   // var audioElement = document.createElement("audio");
   // audioElement.setAttribute("src", "../../../NUCHI201802FSF2-Class-Repository-FSF/NUCHI201802FSF2-Class-Repository-FSF/01-Class-Content/04-jquery/01-Activities/10-CaptainPlanetGame/Solved/Assets/captainplanet24.mp3");
@@ -23,6 +29,7 @@ $(document).ready(function () {
   // Character Object
   // Variables
   var playerPanel;
+  var winCount=0;
   var playerSelection = false;
   var defenderSelection = false;
   var playerSelected;
@@ -81,6 +88,8 @@ $(document).ready(function () {
       attacker.attackerWin = false;
       defender.defenderWin = true;
       console.log(attacker.attackerName + "--> LOSER");
+      $("#status-panel").html("<h1 class="+'text-center'+"> <strong>You Lost the combat. <br> Press Restart if you want to play again</strong></h1>");
+      imperialSongElement.play();    
     }
     else if ((attacker.attackerPower >= 0) && (defender.defenderPower <= 0)) {
       attacker.attackerWin = true;
@@ -89,9 +98,19 @@ $(document).ready(function () {
       console.log("Defender Win: " + defender.defenderWin);
 
       console.log(attacker.attackerName + "--> WINNER");
+      winCount++;
+
       attacker.attackerPower = attacker.attackerPower + attacker.currentPower;
       console.log("New Attack Power for: " + attacker.attackerName + "--> " + attacker.attackerPower);
       $("#" + attacker.powerSpan).html(attacker.attackerPower);
+      if (winCount==3){
+      $("#status-panel").html("<h1 class="+'text-center'+"> <strong>You defeted all your oponents <br> You WON!!!!</strong></h1>");
+      starwarSongElement.play();
+      }
+      else{
+      $("#status-panel").html("<h1 class="+'text-center'+"> <strong>You defeted your opponent. <br> Select another one</strong></h1>");
+      }
+      // $("#status-panel").empty();
       resetEnemies();
     }
   };
